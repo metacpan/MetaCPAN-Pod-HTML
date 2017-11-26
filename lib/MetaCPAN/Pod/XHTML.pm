@@ -3,6 +3,8 @@ package MetaCPAN::Pod::XHTML;
 use strict;
 use warnings;
 
+our $VERSION = '0.001001';
+
 # Keep the coding style of Pod::Simple for consistency and performance.
 # Pod::Simple::XHTML expects you to subclass and then override methods.
 

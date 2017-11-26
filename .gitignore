@@ -1,0 +1,19 @@
+/MANIFEST
+/MANIFEST.bak
+/MYMETA.*
+/Makefile
+/Makefile.old
+/README
+/blib/
+/pm_to_blib
+/Distar
+*~
+*#
+.#*
+/MetaCPAN-Pod-XHTML-*/
+/MetaCPAN-Pod-XHTML-*.tar.gz
+/cover_db/
+/_eumm/
+
+# yes that's right, distar makes it for us
+/MANIFEST.SKIP
