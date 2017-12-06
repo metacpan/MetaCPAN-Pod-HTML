@@ -8,7 +8,8 @@ our $VERSION = '0.001001';
 # Keep the coding style of Pod::Simple for consistency and performance.
 # Pod::Simple::XHTML expects you to subclass and then override methods.
 
-use parent 'Pod::Simple::XHTML';
+use Pod::Simple::XHTML ();
+BEGIN { our @ISA = qw(Pod::Simple::XHTML); }
 use HTML::Entities qw(decode_entities);
 
 __PACKAGE__->_accessorize('link_mappings');
