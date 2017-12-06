@@ -18,7 +18,7 @@ my %META = (
     },
     runtime => {
       requires => {
-        'Pod::Simple::XHTML' => 0,
+        'Pod::Simple::XHTML' => '3.16',
         'HTML::Entities'     => 0,
       },
     },

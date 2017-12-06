@@ -1,4 +1,6 @@
 Revision history for MetaCPAN-Pod-XHTML
 
+  - use more accurate Pod::Simple::XHTML prereq
+
 0.001001 - 2017-12-02
   - Initial release extracted from MetaCPAN Server
