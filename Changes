@@ -1,5 +1,6 @@
 Revision history for MetaCPAN-Pod-XHTML
 
+0.001002 - 2017-12-06
   - list HTML::Entities as a prerequisite
   - use more accurate Pod::Simple::XHTML prereq
 
