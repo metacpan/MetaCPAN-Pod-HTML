@@ -10,7 +10,7 @@ our $VERSION = '0.001001';
 
 use Pod::Simple::XHTML ();
 BEGIN { our @ISA = qw(Pod::Simple::XHTML); }
-use HTML::Entities qw(decode_entities);
+use HTML::Entities ();
 
 __PACKAGE__->_accessorize('link_mappings');
 
@@ -37,7 +37,7 @@ sub _end_head {
     $self->SUPER::_end_head(@_);
     my $index_entry = $self->{'to_index'}[-1];
     $index_entry->[1] = $self->encode_entities(
-        $self->url_encode( decode_entities( $index_entry->[1] ) ) );
+        $self->url_encode( HTML::Entities::decode_entities( $index_entry->[1] ) ) );
     return;
 }
 
@@ -75,7 +75,7 @@ sub idify {
     my ( $self, $t, $for_link ) = @_;
 
     $t =~ s/<[^>]+>//g;
-    $t = decode_entities($t);
+    $t = HTML::Entities::decode_entities($t);
     $t =~ s/^\s+//;
     $t =~ s/\s+$//;
     $t =~ s/[\s-]+/-/g;
@@ -93,7 +93,7 @@ sub id_extras {
     my ( $self, $t ) = @_;
 
     $t =~ s/<[^>]+>//g;
-    $t = decode_entities($t);
+    $t = HTML::Entities::decode_entities($t);
     $t =~ s/^\s+//;
     $t =~ s/\s+$//;
     $t =~ s/[\s-]+/-/g;
