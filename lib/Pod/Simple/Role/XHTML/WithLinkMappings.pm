@@ -24,3 +24,63 @@ around resolve_pod_page_link => sub {
 
 1;
 __END__
+
+=head1 NAME
+
+Pod::Simple::Role::XHTML::WithLinkMappings - Map module links to alternate URLs
+
+=head1 SYNOPSIS
+
+  package MyPodParser;
+  with 'Pod::Simple::Role::XHTML::WithLinkMappings';
+
+  my $parser = MyPodParser->new;
+  $parser->link_mappings({
+    'Pod::Simple::Subclassing' => 'distribution/Pod-Simple/lib/Pod/Simple/Subclassing.pod',
+  });
+  $parser->output_string(\my $html);
+  $parser->parse_string_document($pod);
+
+=head1 DESCRIPTION
+
+This role will allow mapping links in Pod to alternate locations, rather than
+using the module name directly.
+
+
+Headings will be given multiple link targets.  The primary ID will have very
+miminal filters.  An additional target will be generated to match the behavior
+of L<Pod::Simple::XHTML>.  Also, a link will be generated using the first word
+of the target.
+
+L<perlvar> has headings like C<@_>, which under normal filtering would end up
+with a target like C<pod1>.  With the additional targets, it has an actual
+useful target of C<@_>.  L<perlfunc> also gains useful targets like C<open>,
+rather than only targets like C<open-FILEHANDLE%2cEXPR>
+
+=head1 ATTRIBUTES
+
+=head2 link_mappings
+
+A hashref of link sources to targets.
+
+  $parser->link_mappings({
+    'Pod::Simple::Subclassing' => 'distribution/Pod-Simple/lib/Pod/Simple/Subclassing.pod',
+  });
+
+The resulting link is still combined with
+L<perldoc_url_prefix|Pod::Simple::XHTML/perldoc_url_prefix> and
+L<perldoc_url_postfix|Pod::Simple::XHTML/perldoc_url_postfix>.
+
+=head1 SUPPORT
+
+See L<MetaCPAN::Pod::XHTML> for support and contact information.
+
+=head1 AUTHORS
+
+See L<MetaCPAN::Pod::XHTML> for authors.
+
+=head1 COPYRIGHT AND LICENSE
+
+See L<MetaCPAN::Pod::XHTML> for the copyright and license.
+
+=cut

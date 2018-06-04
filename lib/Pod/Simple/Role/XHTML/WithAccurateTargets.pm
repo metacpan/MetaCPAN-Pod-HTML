@@ -108,3 +108,45 @@ sub id_extras {
 
 1;
 __END__
+
+=head1 NAME
+
+Pod::Simple::Role::XHTML::WithAccurateTargets - Use more accurate link targets
+
+=head1 SYNOPSIS
+
+  package MyPodParser;
+  with 'Pod::Simple::Role::XHTML::WithAccurateTargets';
+
+  my $parser = MyPodParser->new;
+  $parser->output_string(\my $html);
+  $parser->parse_string_document($pod);
+
+=head1 DESCRIPTION
+
+Adds multiple link targets to rendered headings to allow more useful linking.
+
+The normal targets used by L<Pod::Simple::XHTML> are heavily filtered, meaning
+heading that are primarily symbolic (such as C<@_> in L<perlvar>) can't be
+usefully linked externally.  Link targets will be added using minimal filtering,
+which will also be used for linking to external pages.
+
+Many headings for functions and methods include the function signature.  This
+makes linking to the headings awkward.  Link targets based on the first word
+of headings will be added to make linking easier.  This form of linking is
+very common when linking to sections of L<perlfunc>, allowing links like
+C<< LE<lt>perlfunc/openE<gt> >>.
+
+=head1 SUPPORT
+
+See L<MetaCPAN::Pod::XHTML> for support and contact information.
+
+=head1 AUTHORS
+
+See L<MetaCPAN::Pod::XHTML> for authors.
+
+=head1 COPYRIGHT AND LICENSE
+
+See L<MetaCPAN::Pod::XHTML> for the copyright and license.
+
+=cut
