@@ -1,5 +1,6 @@
 Revision history for MetaCPAN-Pod-XHTML
 
+0.002000 - 2018-06-19
   - split behavior into roles
     - Pod::Simple::Role::XHTML::WithLinkMappings adds the link_mappings
       attribute to adjust module link destinations.
