@@ -11,6 +11,7 @@ with qw(
   Pod::Simple::Role::XHTML::WithLinkMappings
   Pod::Simple::Role::XHTML::WithAccurateTargets
   Pod::Simple::Role::XHTML::WithErrata
+  Pod::Simple::Role::StripVerbatimIndent
 );
 
 1;
@@ -51,6 +52,10 @@ L<Pod::Simple::Role::XHTML::WithAccurateTargets>
 =item *
 
 L<Pod::Simple::Role::XHTML::WithErrata>
+
+=item *
+
+L<Pod::Simple::Role::StripVerbatimIndent>
 
 =back
 
