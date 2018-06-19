@@ -3,7 +3,7 @@ use HTML::Entities qw(decode_entities);
 use Moo;
 use namespace::clean;
 
-our $VERSION = '0.001002';
+our $VERSION = '0.002000';
 $VERSION =~ tr/_//d;
 
 extends 'Pod::Simple::XHTML';

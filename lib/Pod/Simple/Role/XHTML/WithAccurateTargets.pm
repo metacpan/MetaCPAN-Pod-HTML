@@ -4,7 +4,7 @@ use URL::Encode qw(url_encode_utf8);
 use Moo::Role;
 use namespace::clean;
 
-our $VERSION = '0.001002';
+our $VERSION = '0.002000';
 $VERSION =~ tr/_//d;
 
 sub resolve_pod_page_link {
