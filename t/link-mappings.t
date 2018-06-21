@@ -2,9 +2,16 @@ use strict;
 use warnings;
 use Test::More;
 
-use MetaCPAN::Pod::XHTML;
+my $class;
+{
+  package ParserWithLinkMappings;
+  $class = __PACKAGE__;
+  use Moo;
+  extends 'Pod::Simple::XHTML';
+  with 'Pod::Simple::Role::XHTML::WithLinkMappings';
+}
 
-my $parser = MetaCPAN::Pod::XHTML->new;
+my $parser = $class->new;
 
 $parser->link_mappings({
   'List::Util::PP' => 'release/HAARG/List-Util-MaybeXS-1.50/lib/List/Util/PP.pm',

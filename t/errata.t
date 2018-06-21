@@ -2,9 +2,16 @@ use strict;
 use warnings;
 use Test::More;
 
-use MetaCPAN::Pod::XHTML;
+my $class;
+{
+  package ParserWithErrata;
+  $class = __PACKAGE__;
+  use Moo;
+  extends 'Pod::Simple::XHTML';
+  with 'Pod::Simple::Role::XHTML::WithErrata';
+}
 
-my $parser = MetaCPAN::Pod::XHTML->new;
+my $parser = $class->new;
 
 $parser->output_string( \(my $output = '') );
 my $pod = <<'END_POD';

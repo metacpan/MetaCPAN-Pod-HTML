@@ -2,9 +2,16 @@ use strict;
 use warnings;
 use Test::More;
 
-use MetaCPAN::Pod::XHTML;
+my $class;
+{
+  package ParserWithAccurateTargets;
+  $class = __PACKAGE__;
+  use Moo;
+  extends 'Pod::Simple::XHTML';
+  with 'Pod::Simple::Role::StripVerbatimIndent';
+}
 
-my $parser = MetaCPAN::Pod::XHTML->new;
+my $parser = $class->new;
 $parser->output_string( \(my $output = '') );
 my $pod = <<'END_POD';
   =head1 SYNOPSIS
@@ -23,7 +30,7 @@ like $output, qr{(?:>|^)Foo}m;
 like $output, qr{(?:>|^)  Bar}m;
 like $output, qr{(?:>|^)Guff}m;
 
-$parser = MetaCPAN::Pod::XHTML->new;
+$parser = $class->new;
 $parser->output_string( \($output = '') );
 $parser->strip_verbatim_indent(sub { undef });
 $parser->parse_string_document("$pod");
@@ -32,7 +39,7 @@ like $output, qr{(?:>|^)    Foo}m;
 like $output, qr{(?:>|^)      Bar}m;
 like $output, qr{(?:>|^)    Guff}m;
 
-$parser = MetaCPAN::Pod::XHTML->new;
+$parser = $class->new;
 $parser->output_string( \($output = '') );
 $pod = <<'END_POD';
   =head1 SYNOPSIS
