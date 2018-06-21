@@ -1,5 +1,4 @@
 package MetaCPAN::Pod::XHTML;
-use HTML::Entities qw(decode_entities);
 use Moo;
 use namespace::clean;
 
