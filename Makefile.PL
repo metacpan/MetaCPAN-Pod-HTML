@@ -21,7 +21,7 @@ my %META = (
         'HTML::Entities'     => '3.69',
         'Moo'                => '2.003000',
         'Moo::Role'          => '2.003000',
-        'Pod::Simple::XHTML' => '3.16',
+        'Pod::Simple::XHTML' => '3.23',
         'URL::Encode'        => '0.03',
         'namespace::clean'   => '0.27',
       },
