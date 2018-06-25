@@ -1,5 +1,6 @@
 Revision history for MetaCPAN-Pod-XHTML
 
+0.002001 - 2018-06-25
   - increased Pod::Simple prereq version to compatible version.
   - removed extraneous pod section
   - test cleanups
