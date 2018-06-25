@@ -1,5 +1,9 @@
 Revision history for MetaCPAN-Pod-XHTML
 
+  - increased Pod::Simple prereq version to compatible version.
+  - removed extraneous pod section
+  - test cleanups
+
 0.002000 - 2018-06-19
   - split behavior into roles
     - Pod::Simple::Role::XHTML::WithLinkMappings adds the link_mappings
