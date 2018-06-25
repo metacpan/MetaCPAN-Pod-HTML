@@ -2,7 +2,7 @@ package MetaCPAN::Pod::XHTML;
 use Moo;
 use namespace::clean;
 
-our $VERSION = '0.002000';
+our $VERSION = '0.002001';
 $VERSION =~ tr/_//d;
 
 extends 'Pod::Simple::XHTML';

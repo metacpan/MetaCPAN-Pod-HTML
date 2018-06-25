@@ -3,7 +3,7 @@ use HTML::Entities qw(encode_entities);
 use Moo::Role;
 use namespace::clean;
 
-our $VERSION = '0.002000';
+our $VERSION = '0.002001';
 $VERSION =~ tr/_//d;
 
 around _gen_errata => sub {

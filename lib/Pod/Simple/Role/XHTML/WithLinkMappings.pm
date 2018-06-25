@@ -4,7 +4,7 @@ use URL::Encode qw(url_encode_utf8);
 use Moo::Role;
 use namespace::clean;
 
-our $VERSION = '0.002000';
+our $VERSION = '0.002001';
 $VERSION =~ tr/_//d;
 
 has link_mappings => ( is => 'rw' );
