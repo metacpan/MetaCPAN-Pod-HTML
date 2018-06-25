@@ -46,16 +46,10 @@ Pod::Simple::Role::XHTML::WithLinkMappings - Map module links to alternate URLs
 This role will allow mapping links in Pod to alternate locations, rather than
 using the module name directly.
 
-
 Headings will be given multiple link targets.  The primary ID will have very
 miminal filters.  An additional target will be generated to match the behavior
 of L<Pod::Simple::XHTML>.  Also, a link will be generated using the first word
 of the target.
-
-L<perlvar> has headings like C<@_>, which under normal filtering would end up
-with a target like C<pod1>.  With the additional targets, it has an actual
-useful target of C<@_>.  L<perlfunc> also gains useful targets like C<open>,
-rather than only targets like C<open-FILEHANDLE%2cEXPR>
 
 =head1 ATTRIBUTES
 
