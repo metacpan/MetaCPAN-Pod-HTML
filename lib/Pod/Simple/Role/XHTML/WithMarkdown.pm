@@ -1,5 +1,5 @@
 package Pod::Simple::Role::XHTML::WithMarkdown;
-use HTML::Entities qw(encode_entities decode_entities);
+use HTML::Entities qw(encode_entities);
 use Scalar::Util qw(weaken);
 use URL::Encode qw(url_decode_utf8);
 use Moo::Role;
@@ -12,7 +12,8 @@ has __markdown_renderer => (is => 'lazy');
 sub _build___markdown_renderer {
     my $self = shift;
     weaken $self;
-    sub {
+    my $renderer = Text::Markdown::_WithLinkFilter->new;
+    $renderer->__link_filter(sub {
         my $uri = shift;
         my ($pod) = /^urn:pod:(.*)/
             or return undef;
@@ -26,8 +27,25 @@ sub _build___markdown_renderer {
         undef $section
             if defined $section && !length $section;
 
-        return $self->resolve_pod_page_link($module, $section);
-    };
+        my $link = $self->resolve_pod_page_link($module, $section);
+
+        if (wantarray) {
+            my $title = '';
+            if (defined $section) {
+                $title = qq{"$section"};
+                if (defined $module) {
+                    $title .= ' in ';
+                }
+            }
+            if (defined $module) {
+                $title .= $module;
+            }
+            return ($link, $title);
+        }
+
+        return $link;
+    });
+    return $renderer;
 }
 
 sub BUILD {}
@@ -55,21 +73,41 @@ before end_for => sub {
 {
     package #hide
         Text::Markdown::_WithLinkFilter;
+    use HTML::Entities qw(encode_entities decode_entities);
     use Moo;
+    use namespace::clean;
     extends 'Text::Markdown';
-    has __link_filter => (is => 'ro');
+    has __link_filter => (is => 'rw', init_arg => undef);
 
-    around [qw(_GenerateAnchor _DoAutoLinks _EncodeEmailAddress)] => sub {
+    around [qw(_GenerateAnchor _EncodeEmailAddress)] => sub {
         my ($orig, $self) = (shift, shift);
         my $result = $self->$orig(@_);
 
-        # i don't like regexing URLs but oh well, it's targetted
-        my ($before, $url, $after) = $result =~ /\A(<a href=")[^"]+(".*)\z/s;
+        # i don't like regexing HTML but oh well, it's targetted
+        my ($before, $url, $after) = $result =~ /\A(<a href=")([^"]+)(".*)\z/s;
         if ($url) {
-            my $new_url = $self->__link_filter->($url);
-            if (defined $new_url) {
-                return $before . $new_url . $after;
-            }
+            my $new_url = $self->__link_filter->(decode_entities($url));
+            $url = encode_entities($new_url)
+                if defined $new_url;
+
+            return $before . $new_url . $after;
+        }
+        return $result;
+    };
+
+    around _DoAutoLinks => sub {
+        my ($orig, $self) = (shift, shift);
+        my $result = $self->$orig(@_);
+
+        my ($before, $url, $after) = $result =~ /\A(<a href=")([^"]+)(".*\z)/s;
+        if ($url) {
+            my ($new_url, $new_label) = $self->__link_filter->(decode_entities($url));
+            $url = encode_entities($new_url)
+                if defined $new_url;
+
+            $after = '">'.encode_entities($new_label).'</a>';
+
+            return $before . $new_url . $after;
         }
         return $result;
     };
