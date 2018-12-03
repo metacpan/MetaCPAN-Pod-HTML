@@ -23,6 +23,7 @@ my %META = (
         'Moo::Role'          => '2.003000',
         'Pod::Simple::XHTML' => '3.23',
         'URL::Encode'        => '0.03',
+        'Text::Markdown'     => '1.000031',
         'namespace::clean'   => '0.27',
       },
     },
