@@ -2,6 +2,24 @@ package Pod::Simple::Role::StripVerbatimIndent;
 use Moo::Role;
 use namespace::clean;
 
+sub BUILD {}
+after BUILD => sub {
+  my $self = shift;
+  $self->expand_verbatim_tabs(0);
+};
+
+my $tab_width = 8;
+my $expand = sub {
+  my ($string, $max) = @_;
+  $max = length $string
+    if !defined $max;
+  $max--;
+  while (
+    $string =~ s/^( {0,$max})(\t)/$1 . (" " x ( ( $tab_width ) - ( length($1) % $tab_width ) ) )/e
+  ) {}
+  return $string;
+};
+
 around strip_verbatim_indent => sub {
   my ($orig, $self) = (shift, shift);
   if (my $strip = $self->$orig(@_)) {
@@ -9,15 +27,17 @@ around strip_verbatim_indent => sub {
   }
   return sub {
     my ($para) = @_;
-    for my $line (@$para) {
-      while( $line =~
-        s/^([^\t]*)(\t+)/$1.(" " x ((length($2)<<3)-(length($1)&7)))/e
-      ) {}
-    }
+    my ($min_indent) =
+      sort { $a <=> $b }
+      map length($expand->($_)),
+      map /^([ \t]+)/m,
+      @$para;
 
-    my $indent = (sort map $_ =~ /^( *)./mg, @$para)[0] || '';
-    $_ =~ s/^\Q$indent//mg
+    my $strip_indent = ' ' x $min_indent;
+
+    $_ = $expand->($_, $min_indent) and s/\A\Q$strip_indent//
       for @$para;
+
     return;
   }
 };

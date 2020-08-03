@@ -4,57 +4,81 @@ use Test::More;
 
 my $class;
 {
-  package ParserWithAccurateTargets;
+  package ParserWithStrippedIndents;
   $class = __PACKAGE__;
   use Moo;
   extends 'Pod::Simple::XHTML';
   with 'Pod::Simple::Role::StripVerbatimIndent';
 }
 
-my $parser = $class->new;
-$parser->output_string( \(my $output = '') );
-my $pod = <<'END_POD';
-  =head1 SYNOPSIS
+sub parse {
+  my ($pod, $cb) = @_;
 
-      Foo
-        Bar
+  my $parser = $class->new;
+  $cb->($parser)
+    if $cb;
+  $parser->output_string( \(my $output = '') );
+  $parser->parse_string_document("=pod\n\n$pod");
 
-      Guff
+  my ($pre_text) = $output =~ m{<pre><code>(.*?)</code></pre>}s;
+  $pre_text =~ s/\n?\z/\n/;
 
-  =cut
+  return $pre_text;
+}
+
+is parse(<<'END_POD'), <<'END_TEXT';
+    Foo
+      Bar
+
+    Guff
 END_POD
-$pod =~ s/^  //mg;
-$parser->parse_string_document("$pod");
+Foo
+  Bar
 
-like $output, qr{(?:>|^)Foo}m;
-like $output, qr{(?:>|^)  Bar}m;
-like $output, qr{(?:>|^)Guff}m;
+Guff
+END_TEXT
 
-$parser = $class->new;
-$parser->output_string( \($output = '') );
-$parser->strip_verbatim_indent(sub { undef });
-$parser->parse_string_document("$pod");
+is parse(<<'END_POD', sub { $_[0]->strip_verbatim_indent(sub { undef } ) } ), <<'END_TEXT';
+    Foo
+      Bar
 
-like $output, qr{(?:>|^)    Foo}m;
-like $output, qr{(?:>|^)      Bar}m;
-like $output, qr{(?:>|^)    Guff}m;
-
-$parser = $class->new;
-$parser->output_string( \($output = '') );
-$pod = <<'END_POD';
-  =head1 SYNOPSIS
-
-      Foo
-      Bar	Bar
-      Guff	Guff
-
-  =cut
+    Guff
 END_POD
-$pod =~ s/^  //mg;
-$parser->parse_string_document("$pod");
+    Foo
+      Bar
 
-like $output, qr{(?:>|^)Foo}m;
-like $output, qr{(?:>|^)Bar Bar}m;
-like $output, qr{(?:>|^)Guff        Guff}m;
+    Guff
+END_TEXT
+
+
+is parse(<<'END_POD'), <<'END_TEXT';
+    Foo
+    Bar	Bar
+    Guff	Guff
+END_POD
+Foo
+Bar	Bar
+Guff	Guff
+END_TEXT
+
+is parse(<<'END_POD'), <<'END_TEXT';
+	Foo
+		Bar
+		Guff
+END_POD
+Foo
+	Bar
+	Guff
+END_TEXT
+
+is parse(<<'END_POD'), <<'END_TEXT';
+    Foo
+	Bar
+	Guff
+END_POD
+Foo
+    Bar
+    Guff
+END_TEXT
 
 done_testing;
