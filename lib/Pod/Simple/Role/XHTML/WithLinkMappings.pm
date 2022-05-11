@@ -32,6 +32,8 @@ Pod::Simple::Role::XHTML::WithLinkMappings - Map module links to alternate URLs
 =head1 SYNOPSIS
 
   package MyPodParser;
+  use Moo;
+  extends 'Pod::Simple::XHTML';
   with 'Pod::Simple::Role::XHTML::WithLinkMappings';
 
   my $parser = MyPodParser->new;
