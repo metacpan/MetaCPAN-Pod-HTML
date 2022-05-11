@@ -7,31 +7,47 @@ use namespace::clean;
 our $VERSION = '0.002001';
 $VERSION =~ tr/_//d;
 
+with qw(Pod::Simple::Role::XHTML::WithPostProcess);
+
 before _end_head => sub {
   my $self = shift;
   my $head_name = $self->{htext};
-  $self->{more_ids} = [ $self->id_extras($head_name) ];
+  $self->{__more_ids_for} = $head_name;
 };
 
 before end_item_text => sub {
   my $self = shift;
   if ( $self->{anchor_items} ) {
     my $item_name = $self->{'scratch'};
-    $self->{more_ids} = [ $self->id_extras($item_name) ];
+    $self->{__more_ids_for} = $item_name;
   }
 };
 
-around emit => sub {
+after pre_process => sub {
+  my ($self, $content) = @_;
+  if (my $for = delete $self->{__more_ids_for}) {
+    # match the first tag in the content being added. this will contain the
+    # primary id to use for links, so it should be unique. we'll be searching
+    # for it later to add the additional link targets.
+    $content =~ /(<\w[^>]*>)/s;
+    $self->{__extra_ids}{$1} = $for;
+  }
+};
+
+around post_process => sub {
   my $orig = shift;
   my $self = shift;
-  my $ids  = delete $self->{more_ids};
-  if ( $ids && @$ids ) {
-    my $scratch = $self->{scratch};
-    my $add = join '', map qq{<a id="$_"></a>}, @$ids;
-    $scratch =~ s/(<\w[^>]*>)/$1$add/;
-    $self->{scratch} = $scratch;
-  }
-  $self->$orig(@_);
+  my $output = $self->$orig(@_);
+  my $extras = delete $self->{__extra_ids}
+    or return $output;
+
+  # search for any of the tags we found when preprocessing
+  my $match = join '|', map quotemeta, keys %$extras;
+  # inject extra links for each tag found
+  $output =~ s{($match)}{
+    join '', $1, map qq{<a id="$_"></a>}, $self->id_extras($extras->{$1})
+  }ge;
+  return $output;
 };
 
 sub id_extras {

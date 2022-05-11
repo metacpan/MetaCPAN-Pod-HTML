@@ -41,6 +41,7 @@ $parser->parse_string_document($pod);
 
 like $output, qr/Pod::Document/;
 like $output, qr/<a id="self--some_method---options">/;
-like $output, qr/<a id="options"><\/a><a id="options----options">/;
+like $output, qr/<h1 id="options">/;
+like $output, qr/<a id="options1"><\/a><a id="options----options">/;
 
 done_testing;
