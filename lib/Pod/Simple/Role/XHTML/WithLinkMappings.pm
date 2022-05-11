@@ -48,11 +48,6 @@ Pod::Simple::Role::XHTML::WithLinkMappings - Map module links to alternate URLs
 This role will allow mapping links in Pod to alternate locations, rather than
 using the module name directly.
 
-Headings will be given multiple link targets.  The primary ID will have very
-miminal filters.  An additional target will be generated to match the behavior
-of L<Pod::Simple::XHTML>.  Also, a link will be generated using the first word
-of the target.
-
 =head1 ATTRIBUTES
 
 =head2 link_mappings
