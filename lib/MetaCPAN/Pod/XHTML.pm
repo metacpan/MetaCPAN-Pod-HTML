@@ -10,6 +10,7 @@ with qw(
   Pod::Simple::Role::XHTML::WithLinkMappings
   Pod::Simple::Role::XHTML::WithAccurateTargets
   Pod::Simple::Role::XHTML::WithErrata
+  Pod::Simple::Role::XHTML::WithHighlightConfig
   Pod::Simple::Role::StripVerbatimIndent
 );
 
