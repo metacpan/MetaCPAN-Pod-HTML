@@ -4,11 +4,12 @@ use Test::More;
 
 my $class;
 {
-  package ParserWithAccurateTargets;
+  package ParserWithExtraTargets;
   $class = __PACKAGE__;
   use Moo;
   extends 'Pod::Simple::XHTML';
   with 'Pod::Simple::Role::XHTML::WithAccurateTargets';
+  with 'Pod::Simple::Role::XHTML::WithExtraTargets';
 }
 
 my $parser = $class->new;
@@ -27,12 +28,19 @@ my $pod = <<'END_POD';
 
   =head2 $self->some_method( \%options );
 
+  =head2 options ( $options )
+
+  =head1 options
+
+  There are options.
+
   =cut
 END_POD
 $pod =~ s/^  //mg;
 $parser->parse_string_document($pod);
 
 like $output, qr/Pod::Document/;
-like $output, qr/<h2 id="\$self-&gt;some_method\(-\\%options-\);">/;
+like $output, qr/<a id="self--some_method---options">/;
+like $output, qr/<a id="options"><\/a><a id="options----options">/;
 
 done_testing;
