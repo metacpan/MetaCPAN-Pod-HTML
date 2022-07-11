@@ -14,6 +14,11 @@ with qw(
   Pod::Simple::Role::StripVerbatimIndent
 );
 
+sub BUILD {
+  my $self = shift;
+  $self->anchor_items(1);
+}
+
 1;
 __END__
 
