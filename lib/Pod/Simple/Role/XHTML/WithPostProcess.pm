@@ -1,9 +1,10 @@
 package Pod::Simple::Role::XHTML::WithPostProcess;
 use Moo::Role;
-use namespace::clean;
 
 our $VERSION = '0.002001';
 $VERSION =~ tr/_//d;
+
+use namespace::clean;
 
 around new => sub {
   my $orig = shift;

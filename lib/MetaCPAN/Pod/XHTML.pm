@@ -1,9 +1,10 @@
 package MetaCPAN::Pod::XHTML;
 use Moo;
-use namespace::clean;
 
 our $VERSION = '0.002001';
 $VERSION =~ tr/_//d;
+
+use namespace::clean;
 
 extends 'Pod::Simple::XHTML';
 with qw(

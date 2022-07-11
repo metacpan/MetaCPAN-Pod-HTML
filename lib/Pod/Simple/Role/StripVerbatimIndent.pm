@@ -1,6 +1,11 @@
 package Pod::Simple::Role::StripVerbatimIndent;
-use Scalar::Util qw(weaken);
 use Moo::Role;
+
+our $VERSION = '0.002001';
+$VERSION =~ tr/_//d;
+
+use Scalar::Util qw(weaken);
+
 use namespace::clean;
 
 requires 'expand_verbatim_tabs';

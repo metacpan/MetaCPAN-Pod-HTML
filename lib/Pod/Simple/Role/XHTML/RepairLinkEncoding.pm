@@ -1,11 +1,13 @@
 package Pod::Simple::Role::XHTML::RepairLinkEncoding;
-use HTML::Entities qw(decode_entities encode_entities);
-use URL::Encode qw(url_encode_utf8);
 use Moo::Role;
-use namespace::clean;
 
 our $VERSION = '0.002001';
 $VERSION =~ tr/_//d;
+
+use HTML::Entities qw(decode_entities encode_entities);
+use URL::Encode qw(url_encode_utf8);
+
+use namespace::clean;
 
 around resolve_pod_page_link => sub {
   my $orig = shift;

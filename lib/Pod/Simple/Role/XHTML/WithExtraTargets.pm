@@ -1,15 +1,16 @@
 package Pod::Simple::Role::XHTML::WithExtraTargets;
+use Moo::Role;
+
+our $VERSION = '0.002001';
+$VERSION =~ tr/_//d;
+
 use HTML::Entities qw(decode_entities encode_entities);
 use URL::Encode qw(url_encode_utf8);
 use Pod::Simple::XHTML ();
-use Moo::Role;
 
 use constant BAD_LINK_ENCODING => !defined &Pod::Simple::XHTML::decode_entities;
 
 use namespace::clean;
-
-our $VERSION = '0.002001';
-$VERSION =~ tr/_//d;
 
 with qw(Pod::Simple::Role::XHTML::WithPostProcess);
 

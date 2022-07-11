@@ -1,10 +1,12 @@
 package Pod::Simple::Role::XHTML::WithAccurateTargets;
-use Pod::Simple::XHTML ();
 use Moo::Role;
-use namespace::clean;
 
 our $VERSION = '0.002001';
 $VERSION =~ tr/_//d;
+
+use Pod::Simple::XHTML ();
+
+use namespace::clean;
 
 sub idify {
   my ( $self, $t, $not_unique ) = @_;
