@@ -8,8 +8,8 @@ $VERSION =~ tr/_//d;
 extends 'Pod::Simple::XHTML';
 with qw(
   Pod::Simple::Role::XHTML::WithLinkMappings
-  Pod::Simple::Role::XHTML::WithAccurateTargets
   Pod::Simple::Role::XHTML::WithExtraTargets
+  Pod::Simple::Role::XHTML::WithAccurateTargets
   Pod::Simple::Role::XHTML::WithErrata
   Pod::Simple::Role::XHTML::WithHighlightConfig
   Pod::Simple::Role::StripVerbatimIndent
