@@ -1,7 +1,7 @@
 package Pod::Simple::Role::XHTML::WithAccurateTargets;
 use Moo::Role;
 
-our $VERSION = '0.002001';
+our $VERSION = '0.003000';
 $VERSION =~ tr/_//d;
 
 use Pod::Simple::XHTML ();

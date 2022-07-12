@@ -1,7 +1,7 @@
 package Pod::Simple::Role::XHTML::WithPostProcess;
 use Moo::Role;
 
-our $VERSION = '0.002001';
+our $VERSION = '0.003000';
 $VERSION =~ tr/_//d;
 
 use namespace::clean;

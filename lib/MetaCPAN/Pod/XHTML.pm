@@ -1,7 +1,7 @@
 package MetaCPAN::Pod::XHTML;
 use Moo;
 
-our $VERSION = '0.002001';
+our $VERSION = '0.003000';
 $VERSION =~ tr/_//d;
 
 use namespace::clean;
