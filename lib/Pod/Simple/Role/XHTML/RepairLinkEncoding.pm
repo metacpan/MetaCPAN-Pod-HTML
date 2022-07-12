@@ -60,12 +60,12 @@ __END__
 
 =head1 NAME
 
-Pod::Simple::Role::XHTML::WithAccurateTargets - Use more accurate link targets
+Pod::Simple::Role::XHTML::RepairLinkEncoding - Repair encoding of section links
 
 =head1 SYNOPSIS
 
   package MyPodParser;
-  with 'Pod::Simple::Role::XHTML::WithAccurateTargets';
+  with 'Pod::Simple::Role::XHTML::RepairLinkEncoding';
 
   my $parser = MyPodParser->new;
   $parser->output_string(\my $html);
@@ -73,10 +73,16 @@ Pod::Simple::Role::XHTML::WithAccurateTargets - Use more accurate link targets
 
 =head1 DESCRIPTION
 
-The normal targets used by L<Pod::Simple::XHTML> are heavily filtered, meaning
-heading that are primarily symbolic (such as C<@_> in L<perlvar>) can't be
-usefully linked externally.  Link targets will be added using minimal filtering,
-which will also be used for linking to external pages.
+L<Pod::Simple> (until at least 3.43) doesn't handle encoding of section links
+correctly if they contain any characters that need to be entity encoded. It
+doesn't understand that ids and link fragments need to be encoded differently.
+
+Applying this role will repair this, allowing any id generation routine to be
+used. It must be applied after any role that modifies the C<idify> method.
+
+This role should usually not be used directly. A future version of
+L<Pod::Simple> will fix this, but until then it is used internally by
+L<Pod::Simple::Role::XHTML::WithAccurateTargets>.
 
 =head1 SUPPORT
 

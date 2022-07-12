@@ -75,6 +75,9 @@ Strips the indentation from verbatim blocks, while not corrupting tab indents.
 The shortest indentation in the verbatim block (excluding empty lines) will be
 stripped from all lines.
 
+By default, using this role will disable tab expansion. It can be re-enabled
+using L<< expand_verbatim_tabs|Pod::Simple/$parser->expand_verbatim_tabs( I<n> ) >>
+
 =head1 SUPPORT
 
 See L<MetaCPAN::Pod::XHTML> for support and contact information.

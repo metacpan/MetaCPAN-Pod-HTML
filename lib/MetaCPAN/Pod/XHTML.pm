@@ -54,6 +54,10 @@ L<Pod::Simple::Role::XHTML::WithLinkMappings>
 
 =item *
 
+L<Pod::Simple::Role::XHTML::WithExtraTargets>
+
+=item *
+
 L<Pod::Simple::Role::XHTML::WithAccurateTargets>
 
 =item *
@@ -62,7 +66,21 @@ L<Pod::Simple::Role::XHTML::WithErrata>
 
 =item *
 
+L<Pod::Simple::Role::XHTML::WithHighlightConfig>
+
+=item *
+
 L<Pod::Simple::Role::StripVerbatimIndent>
+
+=back
+
+=head1 DEFAULTS
+
+=over 4
+
+=item anchor_items
+
+By default, anchor_items is set to true.
 
 =back
 
