@@ -1,5 +1,8 @@
 Revision history for MetaCPAN-Pod-XHTML
 
+  - fix StripVerbatimIndent when applied to classes using BUILD, such as
+    MetaCPAN::Pod::XHTML
+
 0.003000 - 2022-07-12
   - add Pod::Simple::Role::XHTML::WithHighlightConfig role, to allow pod to
     provide hints for syntax highlighting of verbatim sections
