@@ -1,7 +1,7 @@
 package Pod::Simple::Role::XHTML::WithErrata;
 use Moo::Role;
 
-our $VERSION = '0.003000';
+our $VERSION = '0.003001';
 $VERSION =~ tr/_//d;
 
 use HTML::Entities qw(encode_entities);
