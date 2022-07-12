@@ -45,11 +45,13 @@ my $gen_strip_verbatim_indent = sub {
   };
 };
 
-sub BUILD {
+sub BUILD {}
+
+after BUILD => sub {
   my $self = shift;
   $self->expand_verbatim_tabs(0);
   $self->strip_verbatim_indent($self->$gen_strip_verbatim_indent);
-}
+};
 
 1;
 
