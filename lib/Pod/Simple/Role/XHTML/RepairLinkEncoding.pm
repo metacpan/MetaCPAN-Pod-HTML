@@ -42,7 +42,7 @@ around idify => sub {
   my ($text, $not_unique) = @_;
 
   $text = decode_entities($text)
-    if $self->{__in_end_item_text} || $self->{__in_end_head};
+    if $self->{__in_end_item_text} || $self->{__in_end_head} || $self->{__resolving_link};
   $text =~ s/<[^>]+>//g
     if $self->{__in_end_item_text};
 
