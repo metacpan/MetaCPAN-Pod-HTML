@@ -24,7 +24,6 @@ my %META = (
         'Pod::Simple::XHTML' => '3.40',
         'URL::Encode'        => '0.03',
         'namespace::clean'   => '0.27',
-        'Pod::Simple::Role::XHTML::WithHighlightConfig' => 0,
       },
     },
   },
