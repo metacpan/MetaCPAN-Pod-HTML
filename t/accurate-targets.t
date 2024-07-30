@@ -31,6 +31,10 @@ my $pod = <<'END_POD';
 
   L<< /$<digit> >>
 
+  =head2 The "Unicode Bug"
+
+  L<< /The "Unicode Bug" >>
+
   =cut
 END_POD
 $pod =~ s/^  //mg;
@@ -40,5 +44,6 @@ like $output, qr/Pod::Document/;
 like $output, qr/<h2 id="\$self-&gt;some_method\(-\\%options-\);">/;
 like $output, qr/<h2 id="\$&lt;digit&gt;">/;
 like $output, qr/<a href="#%24%3Cdigit%3E">/;
-
+like $output, qr/<h2 id="The-&quot;Unicode-Bug&quot;">/;
+like $output, qr/<a href="#The-%22Unicode-Bug%22">/;
 done_testing;
