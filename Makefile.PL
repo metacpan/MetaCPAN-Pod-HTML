@@ -1,10 +1,10 @@
 use strict;
-use warnings FATAL => 'all';
+use warnings;
 use 5.006;
 
 my %META = (
   name => 'MetaCPAN-Pod-XHTML',
-  license => 'perl_5',
+  license => [ 'perl_5' ],
   prereqs => {
     configure => { requires => {
       'ExtUtils::MakeMaker'   => 0,
@@ -55,16 +55,25 @@ my $eumm_version  = eval $ExtUtils::MakeMaker::VERSION;
 my $mymeta        = $eumm_version >= 6.57_02;
 my $mymeta_broken = $mymeta && $eumm_version < 6.57_07;
 
-($MM_ARGS{NAME} = $META{name}) =~ s/-/::/g;
-($MM_ARGS{VERSION_FROM} = "lib/$MM_ARGS{NAME}.pm") =~ s{::}{/}g;
-$META{license} = [ $META{license} ]
-  if $META{license} && !ref $META{license};
+($MM_ARGS{NAME} = $META{name}) =~ s/-/::/g
+  if !$MM_ARGS{NAME};
+($MM_ARGS{VERSION_FROM} = "lib/$MM_ARGS{NAME}.pm") =~ s{::}{/}g
+  if !$MM_ARGS{VERSION} && !$MM_ARGS{VERSION_FROM};
+$MM_ARGS{ABSTRACT_FROM} ||= $MM_ARGS{VERSION_FROM}
+  if !$MM_ARGS{ABSTRACT};
+$MM_ARGS{AUTHOR} ||= $META{author}
+  if $META{author};
+$MM_ARGS{AUTHOR} = join ', ', @{$MM_ARGS{AUTHOR}}
+  if $eumm_version < 6.5702 && $MM_ARGS{AUTHOR};
 $MM_ARGS{LICENSE} = $META{license}[0]
   if $META{license} && $eumm_version >= 6.30;
 $MM_ARGS{NO_MYMETA} = 1
   if $mymeta_broken;
 $MM_ARGS{META_ADD} = { 'meta-spec' => { version => 2 }, %META }
   unless -f 'META.yml';
+$MM_ARGS{PL_FILES} ||= {};
+$MM_ARGS{NORECURS} = 1
+  if not exists $MM_ARGS{NORECURS};
 
 for (qw(configure build test runtime)) {
   my $key = $_ eq 'runtime' ? 'PREREQ_PM' : uc $_.'_REQUIRES';
