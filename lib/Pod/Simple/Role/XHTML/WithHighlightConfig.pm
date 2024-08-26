@@ -119,6 +119,20 @@ on the C<< <pre> >> block.
 
 =back
 
+=head1 SEE ALSO
+
+=over 4
+
+=item * L<TOBYINK::Pod::HTML> - Another module using the same configuration
+format
+
+=item * L<HTML5 code element|http://www.w3.org/TR/html5/text-level-semantics.html#the-code-element> - Semantics for highlighting encouraged by the HTML5 spec
+
+=item * L<Prism|http://prismjs.com/> - A javascript syntax highlighter
+supporting the classes and attributes used by this module
+
+=back
+
 =head1 SUPPORT
 
 See L<MetaCPAN::Pod::XHTML> for support and contact information.
