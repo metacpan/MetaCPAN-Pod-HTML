@@ -90,40 +90,16 @@ By default, anchor_items is set to true.
 
 =back
 
-=head1 AUTHOR
+=head1 SUPPORT
 
-haarg - Graham Knop (cpan:HAARG) <haarg@haarg.org>
+See L<MetaCPAN::Pod::XHTML> for support and contact information.
 
-=head1 CONTRIBUTORS
+=head1 AUTHORS
 
-=over 4
+See L<MetaCPAN::Pod::XHTML> for authors.
 
-=item *
+=head1 COPYRIGHT AND LICENSE
 
-Olaf Alders <olaf@wundersolutions.com>
-
-=item *
-
-Randy Stauner <randy@magnificent-tears.com>
-
-=item *
-
-Moritz Onken <onken@netcubed.de>
-
-=item *
-
-Grant McLean <grant@mclean.net.nz>
-
-=back
-
-=head1 COPYRIGHT
-
-Copyright (c) 2017 the MetaCPAN::Pod::HTML L</AUTHOR> and L</CONTRIBUTORS>
-as listed above.
-
-=head1 LICENSE
-
-This library is free software and may be distributed under the same terms
-as perl itself. See L<http://dev.perl.org/licenses/>.
+See L<MetaCPAN::Pod::XHTML> for the copyright and license.
 
 =cut
