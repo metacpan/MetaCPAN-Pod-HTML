@@ -1,5 +1,11 @@
 Revision history for MetaCPAN-Pod-HTML
 
+  - new module MetaCPAN::Pod::HTML works the same as MetaCPAN::Pod::XHTML, but
+    outputs HTML5
+  - rename dist to MetaCPAN-Pod-HTML
+  - added Pod::Simple::Role::XHTML::HTML5 for HTML5 output
+  - import Pod::Simple::Role::XHTML::WithHighlightConfig into dist
+
 0.003002 - 2022-07-13
   - fix links to sections with characters that must be encoded
 
