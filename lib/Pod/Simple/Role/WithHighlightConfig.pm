@@ -1,7 +1,7 @@
 package Pod::Simple::Role::WithHighlightConfig;
 use Moo::Role;
 
-our $VERSION = '0.003002';
+our $VERSION = '0.004000';
 $VERSION =~ tr/_//d;
 
 use namespace::clean;
