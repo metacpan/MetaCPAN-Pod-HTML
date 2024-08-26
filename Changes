@@ -1,5 +1,6 @@
 Revision history for MetaCPAN-Pod-HTML
 
+0.004000 - 2024-08-26
   - new module MetaCPAN::Pod::HTML works the same as MetaCPAN::Pod::XHTML, but
     outputs HTML5
   - rename dist to MetaCPAN-Pod-HTML
