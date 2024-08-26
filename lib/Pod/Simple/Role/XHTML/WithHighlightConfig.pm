@@ -123,13 +123,39 @@ on the C<< <pre> >> block.
 
 =over 4
 
-=item * L<TOBYINK::Pod::HTML> - Another module using the same configuration
-format
+=item Modules Supporting the same configuration format
 
-=item * L<HTML5 code element|http://www.w3.org/TR/html5/text-level-semantics.html#the-code-element> - Semantics for highlighting encouraged by the HTML5 spec
+=over 4
 
-=item * L<Prism|http://prismjs.com/> - A javascript syntax highlighter
-supporting the classes and attributes used by this module
+=item *
+
+L<TOBYINK::Pod::HTML> - Another Pod to HTML converter
+
+=item *
+
+L<App::sdview::Parser::Pod> - A terminal documentation viewer
+
+=item *
+
+L<Pod::Markdown::Githubert> - Pod to Markdown converter
+
+=back
+
+=item Users of HTML Attributes
+
+=over 4
+
+=item *
+
+L<HTML5 code element|https://html.spec.whatwg.org/multipage/text-level-semantics.html#the-code-element>
+- Semantics for highlighting encouraged by the HTML5 spec
+
+=item *
+
+L<Prism|https://prismjs.com/> - A javascript syntax highlighter supporting the
+classes and attributes used by this module
+
+=back
 
 =back
 
