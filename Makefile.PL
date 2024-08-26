@@ -3,7 +3,7 @@ use warnings;
 use 5.006;
 
 my %META = (
-  name => 'MetaCPAN-Pod-XHTML',
+  name => 'MetaCPAN-Pod-HTML',
   license => [ 'perl_5' ],
   prereqs => {
     configure => { requires => {
@@ -21,7 +21,7 @@ my %META = (
         'HTML::Entities'     => '3.69',
         'Moo'                => '2.003000',
         'Moo::Role'          => '2.003000',
-        'Pod::Simple::XHTML' => '3.40',
+        'Pod::Simple::XHTML' => '3.45',
         'URL::Encode'        => '0.03',
         'namespace::clean'   => '0.27',
       },
@@ -29,13 +29,13 @@ my %META = (
   },
   resources => {
     repository => {
-      url => 'https://github.com/metacpan/MetaCPAN-Pod-XHTML.git',
-      web => 'https://github.com/metacpan/MetaCPAN-Pod-XHTML',
+      url => 'https://github.com/metacpan/MetaCPAN-Pod-HTML.git',
+      web => 'https://github.com/metacpan/MetaCPAN-Pod-HTML',
       type => 'git',
     },
     x_IRC => 'irc://irc.perl.org/#metacpan',
     bugtracker => {
-      web => 'https://github.com/metacpan/MetaCPAN-Pod-XHTML/issues',
+      web => 'https://github.com/metacpan/MetaCPAN-Pod-HTML/issues',
     },
     license => [ 'http://dev.perl.org/licenses/' ],
   },

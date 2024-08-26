@@ -10,8 +10,9 @@
 *~
 *#
 .#*
-/MetaCPAN-Pod-XHTML-*/
-/MetaCPAN-Pod-XHTML-*.tar.gz
+/MetaCPAN-Pod-HTML-*/
+/MetaCPAN-Pod-HTML-*.tar
+/MetaCPAN-Pod-HTML-*.tar.gz
 /cover_db/
 /_eumm/
 
