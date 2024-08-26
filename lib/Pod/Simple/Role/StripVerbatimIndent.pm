@@ -82,14 +82,14 @@ using L<< expand_verbatim_tabs|Pod::Simple/$parser->expand_verbatim_tabs( I<n> )
 
 =head1 SUPPORT
 
-See L<MetaCPAN::Pod::XHTML> for support and contact information.
+See L<MetaCPAN::Pod::HTML> for support and contact information.
 
 =head1 AUTHORS
 
-See L<MetaCPAN::Pod::XHTML> for authors.
+See L<MetaCPAN::Pod::HTML> for authors.
 
 =head1 COPYRIGHT AND LICENSE
 
-See L<MetaCPAN::Pod::XHTML> for the copyright and license.
+See L<MetaCPAN::Pod::HTML> for the copyright and license.
 
 =cut
