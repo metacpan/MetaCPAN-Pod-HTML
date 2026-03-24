@@ -15,6 +15,8 @@ my $parser = $class->new;
 
 $parser->output_string( \(my $output = '') );
 my $pod = <<'END_POD';
+  =encoding UTF-8
+
   =head1 NAME
 
   Pod::Document - With an abstract
@@ -31,9 +33,9 @@ my $pod = <<'END_POD';
 
   L<< /$<digit> >>
 
-  =head2 The "Unicode Bug"
+  =head2 The "Unicöde Bug"
 
-  L<< /The "Unicode Bug" >>
+  L<< /The "Unicöde Bug" >>
 
   =cut
 END_POD
@@ -44,6 +46,7 @@ like $output, qr/Pod::Document/;
 like $output, qr/<h2 id="\$self-&gt;some_method\(-\\%options-\);">/;
 like $output, qr/<h2 id="\$&lt;digit&gt;">/;
 like $output, qr/<a href="#%24%3Cdigit%3E">/;
-like $output, qr/<h2 id="The-&quot;Unicode-Bug&quot;">/;
-like $output, qr/<a href="#The-%22Unicode-Bug%22">/;
+like $output, qr/<h2 id="The-&quot;Unic&ouml;de-Bug&quot;">/;
+like $output, qr/<a href="#The-%22Unic%C3%B6de-Bug%22">/;
+
 done_testing;
