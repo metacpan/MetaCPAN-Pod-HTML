@@ -1,5 +1,7 @@
 Revision history for MetaCPAN-Pod-HTML
 
+  - fix encoding of section links that contain characters outside ISO-8859-1
+
 0.004000 - 2024-08-26
   - new module MetaCPAN::Pod::HTML works the same as MetaCPAN::Pod::XHTML, but
     outputs HTML5
