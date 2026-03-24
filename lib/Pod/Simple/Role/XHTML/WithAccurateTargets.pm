@@ -25,7 +25,7 @@ sub idify {
 }
 
 with 'Pod::Simple::Role::XHTML::RepairLinkEncoding'
-  if !defined &Pod::Simple::XHTML::decode_entities;
+  if Pod::Simple::XHTML::encode_url({}, "\x{1f408}") ne '%F0%9F%90%88';
 
 1;
 __END__

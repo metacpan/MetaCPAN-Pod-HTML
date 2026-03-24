@@ -37,6 +37,10 @@ my $pod = <<'END_POD';
 
   L<< /The "Unicöde Bug" >>
 
+  =head2 Outside ISO-8859-1 range 🐈
+
+  L<< /Outside ISO-8859-1 range 🐈 >>
+
   =cut
 END_POD
 $pod =~ s/^  //mg;
@@ -48,5 +52,7 @@ like $output, qr/<h2 id="\$&lt;digit&gt;">/;
 like $output, qr/<a href="#%24%3Cdigit%3E">/;
 like $output, qr/<h2 id="The-&quot;Unic&ouml;de-Bug&quot;">/;
 like $output, qr/<a href="#The-%22Unic%C3%B6de-Bug%22">/;
+like $output, qr/<h2 id="Outside-ISO-8859-1-range-&#x1F408;">/;
+like $output, qr/<a href="#Outside-ISO-8859-1-range-%F0%9F%90%88">/;
 
 done_testing;
